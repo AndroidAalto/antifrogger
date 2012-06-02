@@ -1,10 +1,13 @@
 package org.androidaalto.antifrog;
 
+import org.andengine.entity.sprite.AnimatedSprite;
+
 public class Frog {
 
 	private int x;
 	private int y;
 	private int leapLenght;
+	private AnimatedSprite sprite;
 	
 	public Frog(int x, int y, int leapLenght) {
 		this.x = x;
@@ -29,6 +32,14 @@ public class Frog {
 	}
 	public void setLeapLenght(int leapLenght) {
 		this.leapLenght = leapLenght;
+	}
+
+	public AnimatedSprite getSprite() {
+		return sprite;
+	}
+
+	public void setSprite(AnimatedSprite sprite) {
+		this.sprite = sprite;
 	}
 
 	

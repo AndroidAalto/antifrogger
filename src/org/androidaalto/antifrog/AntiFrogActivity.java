@@ -108,7 +108,7 @@ public class AntiFrogActivity extends SimpleBaseGameActivity {
 	}
 
 	@Override
-	public Scene onCreateScene() {
+	public Scene onCreateScene() {	
 		this.mEngine.registerUpdateHandler(new FPSLogger());
 
 		final Scene scene = new Scene();
@@ -139,6 +139,7 @@ public class AntiFrogActivity extends SimpleBaseGameActivity {
 
 		return scene;
 	}
+	
 
 	// ===========================================================
 	// Methods
