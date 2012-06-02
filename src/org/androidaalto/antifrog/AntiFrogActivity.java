@@ -59,6 +59,7 @@ public class AntiFrogActivity extends SimpleBaseGameActivity {
 	private ITextureRegion mParallaxLayerBack;
 	private ITextureRegion mParallaxLayerMid;
 	private ITextureRegion mParallaxLayerFront;
+	private ITextureRegion mFroggerCar;
 
 	// ===========================================================
 	// Constructors
@@ -97,13 +98,16 @@ public class AntiFrogActivity extends SimpleBaseGameActivity {
 		
 		this.mBitmapTextureAtlas = new BitmapTextureAtlas(this.getTextureManager(), 256, 128, TextureOptions.BILINEAR);
 		this.mPlayerTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(this.mBitmapTextureAtlas, this, "player.png", 0, 0, 3, 4);
-		this.mEnemyTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(this.mBitmapTextureAtlas, this, "enemy.png", 73, 0, 3, 4);
+		//this.mEnemyTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(this.mBitmapTextureAtlas, this, "enemy.png", 73, 0, 3, 4);
+		this.mFroggerCar = BitmapTextureAtlasTextureRegionFactory.createFromAsset(this.mBitmapTextureAtlas, this, "Car.png", 0, 100);
 		this.mBitmapTextureAtlas.load();
 
 		this.mAutoParallaxBackgroundTexture = new BitmapTextureAtlas(this.getTextureManager(), 1024, 1024);
-		this.mParallaxLayerFront = BitmapTextureAtlasTextureRegionFactory.createFromAsset(this.mAutoParallaxBackgroundTexture, this, "parallax_background_layer_front.png", 0, 0);
-		this.mParallaxLayerBack = BitmapTextureAtlasTextureRegionFactory.createFromAsset(this.mAutoParallaxBackgroundTexture, this, "parallax_background_layer_back.png", 0, 188);
-		this.mParallaxLayerMid = BitmapTextureAtlasTextureRegionFactory.createFromAsset(this.mAutoParallaxBackgroundTexture, this, "parallax_background_layer_mid.png", 0, 669);
+		//this.mParallaxLayerFront = BitmapTextureAtlasTextureRegionFactory.createFromAsset(this.mAutoParallaxBackgroundTexture, this, "parallax_background_layer_front.png", 0, 0);
+		this.mParallaxLayerBack = BitmapTextureAtlasTextureRegionFactory.createFromAsset(this.mAutoParallaxBackgroundTexture, this, "StillBG.png", 0, 0);
+		this.mParallaxLayerMid = BitmapTextureAtlasTextureRegionFactory.createFromAsset(this.mAutoParallaxBackgroundTexture, this, "MovingBG.png", 0, 481);
+		
+		
 		this.mAutoParallaxBackgroundTexture.load();
 	}
 
@@ -115,8 +119,8 @@ public class AntiFrogActivity extends SimpleBaseGameActivity {
 		final AutoParallaxBackground autoParallaxBackground = new AutoParallaxBackground(0, 0, 0, 5);
 		final VertexBufferObjectManager vertexBufferObjectManager = this.getVertexBufferObjectManager();
 		autoParallaxBackground.attachParallaxEntity(new ParallaxEntity(0.0f, new Sprite(0, displayHeight - this.mParallaxLayerBack.getHeight(), this.mParallaxLayerBack, vertexBufferObjectManager)));
-		autoParallaxBackground.attachParallaxEntity(new ParallaxEntity(-5.0f, new Sprite(0, 80, this.mParallaxLayerMid, vertexBufferObjectManager)));
-		autoParallaxBackground.attachParallaxEntity(new ParallaxEntity(-10.0f, new Sprite(0, displayHeight - this.mParallaxLayerFront.getHeight(), this.mParallaxLayerFront, vertexBufferObjectManager)));
+		autoParallaxBackground.attachParallaxEntity(new ParallaxEntity(5.0f, new Sprite(0, (displayHeight - this.mParallaxLayerMid.getHeight())/2, this.mParallaxLayerMid, vertexBufferObjectManager)));
+		//autoParallaxBackground.attachParallaxEntity(new ParallaxEntity(-10.0f, new Sprite(0, displayHeight - this.mParallaxLayerFront.getHeight(), this.mParallaxLayerFront, vertexBufferObjectManager)));
 		scene.setBackground(autoParallaxBackground);
 
 		/* Calculate the coordinates for the face, so its centered on the camera. */
@@ -129,10 +133,10 @@ public class AntiFrogActivity extends SimpleBaseGameActivity {
 		player.setScale(2);
 		player.animate(new long[]{200, 200, 200}, 3, 5, true);
 
-		final AnimatedSprite enemy = new AnimatedSprite(playerX - 80, playerY, this.mEnemyTextureRegion, vertexBufferObjectManager);
+		final Sprite enemy = new Sprite(playerX - 80, playerY, this.mFroggerCar, vertexBufferObjectManager);
 		enemy.setScaleCenterY(this.mEnemyTextureRegion.getHeight());
 		enemy.setScale(2);
-		enemy.animate(new long[]{200, 200, 200}, 3, 5, true);
+		//enemy.animate(new long[]{200, 200, 200}, 3, 5, true);
 
 		scene.attachChild(player);
 		scene.attachChild(enemy);
