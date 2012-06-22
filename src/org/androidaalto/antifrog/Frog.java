@@ -1,46 +1,26 @@
 package org.androidaalto.antifrog;
 
-import org.andengine.entity.sprite.AnimatedSprite;
+import org.andengine.entity.sprite.Sprite;
 
 public class Frog {
+	public Sprite sprite;
 
-	private int x;
-	private int y;
-	private int leapLenght;
-	private AnimatedSprite sprite;
-	
-	public Frog(int x, int y, int leapLenght) {
-		this.x = x;
-		this.y = y;
-		this.leapLenght = leapLenght;
-	}
-	
-	public int getX() {
-		return x;
-	}
-	public void setX(int x) {
-		this.x = x;
-	}
-	public int getY() {
-		return y;
-	}
-	public void setY(int y) {
-		this.y = y;
-	}
-	public int getLeapLenght() {
-		return leapLenght;
-	}
-	public void setLeapLenght(int leapLenght) {
-		this.leapLenght = leapLenght;
+	public Frog() {
+		sprite = new Sprite(AntiFrogActivity.displayWidth-330, AntiFrogActivity.displayHeight/2-90, 
+				AntiFrogActivity.getSharedInstance().mFrogger, AntiFrogActivity.getSharedInstance().getVertexBufferObjectManager());
+		init();
 	}
 
-	public AnimatedSprite getSprite() {
-		return sprite;
+	public void init() {
+		
 	}
 
-	public void setSprite(AnimatedSprite sprite) {
-		this.sprite = sprite;
+	public void clean() {
+		sprite.clearEntityModifiers();
+		sprite.clearUpdateHandlers();
 	}
 
-	
+	public boolean gotHit() {
+		return false;
+	}
 }
