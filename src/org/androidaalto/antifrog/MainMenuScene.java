@@ -17,7 +17,7 @@ public class MainMenuScene extends MenuScene implements
 		activity = AntiFrogActivity.getSharedInstance();
 
 		setBackground(new Background(0.09804f, 0.6274f, 0.8784f));
-		IMenuItem startButton = new TextMenuItem(MENU_START, activity.mFont, "start",
+		IMenuItem startButton = new TextMenuItem(MENU_START, activity.mFont, "start game",
 				activity.getVertexBufferObjectManager());
 		startButton.setPosition(mCamera.getWidth() / 2 - startButton.getWidth()/ 2, mCamera.getHeight() / 2 - startButton.getHeight() / 2);
 
